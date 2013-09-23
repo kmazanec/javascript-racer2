@@ -1,9 +1,24 @@
 .container {
   margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
+  width: 800px;
+  padding: 0px 20px 0 20px;
   border: 1px dotted black;
 }
 th {
   text-align: left;
+}
+
+.racer_table {
+  margin: 50px auto;
+}
+
+.racer_table td {
+  background-color: white;
+  height: 19px;
+  width: 19px;
+  border: 1px solid black;
+}
+
+.racer_table td.active {
+  background-color: black;
 }
