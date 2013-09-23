@@ -1,59 +1,44 @@
 <div class="container">
 
-<table class="racer_table">
-  <tr id="player1">
-    <td class="active"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
+    <div class="racetrack" id="racetrack" hidden>
+        <h1>Riverside Park Drag Strip</h1>
+        <span>Player 1</span> vs. <span>Player 2</span>
+        <table class="racer_table" id="racer_table" >
+          <tr id="player1">
+            <td class="active"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
 
-  <tr id="player2">
-    <td class="active"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
+          <tr id="player2">
+            <td class="active"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+    </div>
+
+    <div id="login_form" class="login_form">
+        <h1>Welcome to Riverside Park</h1>
+        <h3>Home of AJAX Racers</h3>
+        <form action="/login" method="POST">
+            <input id="player1_name" type="text" name="player1_name" placeholder="Racer 1 Name">
+            <input id="player2_name" type="text" name="player2_name" placeholder="Racer 2 Name">
+            <input type="submit" value="START YOUR ENGINES! LET'S RACE!">
+        </form>
+    </div>
+
+    <div class="race_results" id="race_results" hidden>
+        <p>Game #: </p>
+        <p>Matchup: </p>
+        <p>Winner: </p>
+        <p>Time: </p>
+        <p>Permalink: </p>
+    </div>
+
 
 </div>
