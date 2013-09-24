@@ -37,3 +37,17 @@ post '/login' do
   end
 
 end
+
+
+post '/results' do
+  puts "Results:"
+  puts params.inspect
+
+  game = Game.find_by(id: params[:game_id].to_i)
+  if game
+    game.update(winner_id: Racer.find_by(name: params[:winner]), time: params[:time].to_f)
+  else
+    redirect to ('/')
+  end
+
+end
