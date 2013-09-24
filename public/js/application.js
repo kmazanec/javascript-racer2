@@ -1,26 +1,61 @@
+var start_time = 0;
+var game_time = 0;
+
 function show_results () {
   $('#race_results').show();
-};
+}
 
 function post_results (the_winner, time) {
   var url = "/results";
   var data = { winner: the_winner, time: time, game_id: $('#game_id').text() };
 
   $.post(url, data, function(response){
-
+    alert(response.game_id);
   });
-};
+}
+
+function final_time () {
+  game_time = $.now() - start_time;
+}
+
+function stop_game (winner) {
+  final_time();
+  $("body").unbind("keyup",key_listener);
+  post_results(winner, game_time);
+  show_results();
+  reset();
+  alert(winner + " Wins!!!!!" + (game_time));
+}
 
 
 function reset () {
   $('#player1 td').removeClass('active').first().addClass('active');
   $('#player2 td').removeClass('active').first().addClass('active');
-};
+}
+
+function key_listener (event) {
+  console.log("Made it to the key listener");
+    if (event.keyCode == 81) {
+      var player1 = $('#player1 .active');
+      player1.removeClass('active');
+      player1.next().addClass('active');
+    }
+    else if (event.keyCode == 80) {
+      var player2 = $('#player2 .active');
+      player2.removeClass('active');
+      player2.next().addClass('active');
+    }
+
+    if ($('#player1 .active').size() === 0) {
+      stop_game($('#p1').text());
+    }
+    else if ($('#player2 .active').size() === 0) {
+      stop_game($('#p2').text());
+    }
+}
 
 $(document).ready(function() {
 
-  var start_time = 0;
-  var end_time = 0;
 
   $("#login_form").submit(function(event) {
     event.preventDefault();
@@ -57,42 +92,12 @@ $(document).ready(function() {
 
   $("#start_timer").on("click", function(event) {
     $("#elapsed_time").text("GO!");
+    $("body").bind("keyup",key_listener);
     start_time = $.now();
   });
 
 
-
-  $("body").keyup(event,function(){ 
-    if (event.keyCode == 81) {
-      var player1 = $('#player1 .active');
-      player1.next().addClass('active');
-      player1.removeClass('active');
-    }
-    else if (event.keyCode == 80) {
-      var player2 = $('#player2 .active');
-      player2.removeClass('active');
-      player2.next().addClass('active');
-    };
-
-    if ($('#player1 .active').size() == 0) {
-      var winner = $('#p1').text();
-      end_time = $.now();
-      post_results(winner,end_time - start_time);
-      show_results();
-      alert(winner + " Wins!!!!!" + (end_time - start_time));
-      reset();
-    }
-    else if ($('#player2 .active').size() == 0) {
-      var winner = $('#p2').text();
-      end_time = $.now();
-
-      post_results(winner,end_time - start_time);      
-      show_results();
-      alert(winner + " Wins!!!!!" + (end_time - start_time));
-      reset();
-    };
-
-  });
+  // $("body").keyup(event,key_listener(event));
 
 
 

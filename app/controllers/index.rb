@@ -46,6 +46,8 @@ post '/results' do
   game = Game.find_by(id: params[:game_id].to_i)
   if game
     game.update(winner_id: Racer.find_by(name: params[:winner]), time: params[:time].to_f)
+    content_type :json
+    { game_id: game.id }.to_json
   else
     redirect to ('/')
   end
