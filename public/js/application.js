@@ -10,7 +10,7 @@ function post_results (the_winner, time) {
   var data = { winner: the_winner, time: time, game_id: $('#game_id').text() };
 
   $.post(url, data, function(response){
-
+    alert(response.game_id);
   });
 }
 
