@@ -2,7 +2,7 @@
     <div class="race_results" id="race_results">
         <p>Game #: <%= @game.id %></p>
         <p>Matchup: <%= @player1.name %> vs. <%= @player2.name %> </p>
-        <p>Winner: <%= Racer.find(@game.winner_id).name %> </p>
+        <p>Winner: <%= @game.winner_id %> </p>
         <p>Time: <%= @game.time %></p>
         <p>Permalink: <a href="/game/<%= @game.id %>">localhost:9393/game/<%= @game.id %></a></p>
         <input id="race_again" type="submit" value="RACE AGAIN">
